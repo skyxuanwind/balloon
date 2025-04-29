@@ -18,7 +18,10 @@ let nextBalloonId = 1;
 let clientTypes = {};
 
 // 設定靜態文件目錄 (存放 HTML, CSS, JS)
-const publicDirectoryPath = path.join(__dirname, '../public');
+// Assuming Render runs the start command with the project root as the CWD
+// const publicDirectoryPath = path.join(__dirname, '../public'); // Previous way
+const publicDirectoryPath = path.resolve('public'); // Resolve relative to CWD
+console.log(`[Server Path] Serving static files from: ${publicDirectoryPath}`); // Add log
 app.use(express.static(publicDirectoryPath));
 
 // 處理根路徑請求，導向大螢幕頁面 (可選)
