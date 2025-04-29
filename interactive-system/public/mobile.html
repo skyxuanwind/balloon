@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手機操作端</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="initial-form">
+        <h1>富揚白金名人堂分會願望牆</h1>
+        <label for="name">姓名:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="supplier1">想要的供應商:</label>
+        <input type="text" id="supplier1" name="supplier1" required><br><br>
+
+        <label for="supplier2">想要的供應商:</label>
+        <input type="text" id="supplier2" name="supplier2" required><br><br>
+
+        <label for="supplier3">想要的供應商:</label>
+        <input type="text" id="supplier3" name="supplier3" required><br><br>
+
+        <button id="submit-button">送出</button>
+    </div>
+
+    <div id="waiting-screen" style="display: none;">
+        <h1>等待中...</h1>
+        <p>請等待大螢幕指示</p>
+    </div>
+
+    <div id="dart-screen" style="display: none;">
+        <!-- Container for positioning image and input -->
+        <div id="dart-container" style="position: relative; max-width: 150px; margin: 15px auto;"> 
+            <!-- Dart Image -->
+            <img src="/images/dart.png" alt="Dart" id="dart-image" style="display: block; width: 100%;">
+            
+            <!-- Input field and label (will be positioned absolutely) -->
+            <div id="dart-input-overlay" style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); width: 80%; text-align: center;">
+                <label for="target-number1" style="color: white; font-size: 12px; display: none;" >祝福1:</label>
+                <input type="number" id="target-number1" name="target-number1" required placeholder="祝福1" 
+                       style="width: 40%; padding: 5px; text-align: center; background-color: rgba(255,255,255,0.8); border: 1px solid #ccc; border-radius: 3px; margin-right: 5px;">
+                <label for="target-number2" style="color: white; font-size: 12px; display: none;" >祝福2:</label>
+                <input type="number" id="target-number2" name="target-number2" required placeholder="祝福2"
+                       style="width: 40%; padding: 5px; text-align: center; background-color: rgba(255,255,255,0.8); border: 1px solid #ccc; border-radius: 3px;">
+            </div>
+        </div>
+
+        <!-- Button remains below -->
+        <button id="shoot-button">射出祝福</button>
+    </div>
+
+    <div id="result-message" style="display: none;">
+        <!-- 顯示結果訊息 -->
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO 客戶端庫 -->
+    <script src="mobile.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>互動大螢幕</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>富揚白金名人堂分會 願望祝福牆</h1>
+    <div id="balloon-area">
+        <!-- 氣球會動態加到這裡 -->
+    </div>
+
+    <button id="start-button">開始給祝福</button>
+    <button id="reset-button" style="margin-left: 10px; background-color: #f44336;">重設遊戲</button>
+
+    <div id="results-area">
+        <h2>祝福結果</h2>
+        <!-- 射中的結果會顯示在這裡 -->
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO 客戶端庫 -->
+    <script src="script.js"></script>
+</body>
+</html>

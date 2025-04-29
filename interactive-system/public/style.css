@@ -1,0 +1,184 @@
+/* General Styles */
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #555;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5c67f2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4a54cc;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: calc(100% - 18px); /* Adjust for padding and border */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Big Screen Styles (index.html) */
+#balloon-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Spacing between balloons */
+    padding: 20px;
+    background-color: #e0f7fa;
+    border-radius: 8px;
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+
+.balloon {
+    background-color: #ffcc80; /* Light orange */
+    border: 2px solid #ffa726; /* Darker orange */
+    border-radius: 50%; /* Make it round */
+    width: 130px; /* 增加寬度 */
+    height: 130px; /* 增加高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.balloon-number {
+    font-size: 30px; /* 增加數字大小 */
+    font-weight: bold;
+    color: #bf360c; /* Dark red-orange */
+}
+
+.balloon-supplier {
+    font-size: 14px; /* 增加供應商文字大小 */
+    color: #5d4037; /* Brown */
+    margin-top: 5px;
+}
+
+.balloon.hit {
+    background-color: #bdbdbd; /* Grey */
+    border-color: #757575;
+    opacity: 0.6;
+    transform: scale(0.9);
+    animation: none;
+}
+
+#start-button {
+    display: block;
+    margin: 20px auto;
+}
+
+#results-area {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-height: 400px;
+    overflow-y: auto; /* Add scroll if results are too many */
+}
+
+.hit-result {
+    padding: 10px 0; /* 增加一點垂直間距 */
+    border-bottom: 1px dashed #eee;
+    font-size: 16px; /* 增加祝福結果字體大小 */
+}
+
+.hit-result:last-child {
+    border-bottom: none;
+}
+
+/* Style for the small dart icon in results */
+.result-dart-icon {
+    height: 1em; /* Make icon height relative to text size */
+    vertical-align: middle; /* Align icon nicely with text */
+    margin-right: 5px;
+}
+
+/* Mobile Styles (mobile.html) */
+#initial-form,
+#waiting-screen,
+#dart-screen,
+#result-message {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#submit-button,
+#shoot-button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#waiting-screen p {
+    font-size: 18px;
+    color: #777;
+}
+
+#result-message {
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+#result-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+#result-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Add animation keyframes */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

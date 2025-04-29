@@ -1,0 +1,25 @@
+{
+  "name": "interactive-system",
+  "version": "1.0.0",
+  "description": "Real-time interactive system with big screen and mobile clients",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "interactive",
+    "websocket",
+    "socket.io",
+    "express"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
