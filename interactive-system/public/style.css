@@ -1,49 +1,72 @@
-/* General Styles */
+/* General Styles - Dark Theme */
 body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #0a192f; /* Dark blue background */
+    color: #ccd6f6; /* Light blue/grey text */
+    padding: 20px;
 }
 
 h1, h2 {
     text-align: center;
-    color: #555;
+    color: #64ffda; /* Neon teal/cyan for titles */
+    text-shadow: 0 0 5px rgba(100, 255, 218, 0.5);
+    margin-bottom: 30px;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #5c67f2;
-    color: white;
-    border: none;
+    padding: 12px 25px;
+    background-color: transparent; /* Transparent background */
+    color: #ffc107; /* Amber/gold text */
+    border: 2px solid #ffc107; /* Amber/gold border */
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.3); /* Subtle glow */
 }
 
 button:hover {
-    background-color: #4a54cc;
+    background-color: rgba(255, 193, 7, 0.1); /* Slight amber background on hover */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.6); /* Enhanced glow on hover */
+    color: #fff;
 }
 
 button:disabled {
-    background-color: #ccc;
+    border-color: #555;
+    color: #555;
     cursor: not-allowed;
+    box-shadow: none;
+    background-color: transparent;
 }
 
 input[type="text"],
 input[type="number"] {
-    padding: 8px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    border: 1px solid #1d3b6b; /* Darker blue border */
     border-radius: 4px;
-    margin-bottom: 10px;
-    width: calc(100% - 18px); /* Adjust for padding and border */
+    margin-bottom: 15px;
+    width: calc(100% - 22px);
+    background-color: #112240; /* Slightly lighter dark blue */
+    color: #ccd6f6;
+    font-size: 15px;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} /* Remove number input spinners */
+input[type="number"] {
+    -moz-appearance: textfield;
+} /* Remove number input spinners for Firefox */
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #8892b0; /* Lighter grey/blue for labels */
 }
 
 /* Big Screen Styles (index.html) */
@@ -51,69 +74,101 @@ label {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px; /* Spacing between balloons */
-    padding: 20px;
-    background-color: #e0f7fa;
+    gap: 25px; /* Increased spacing */
+    padding: 30px;
+    background-color: rgba(17, 34, 64, 0.8); /* Semi-transparent dark blue */
+    border: 1px solid #1d3b6b;
     border-radius: 8px;
-    min-height: 300px;
-    margin-bottom: 20px;
+    min-height: 400px;
+    margin-bottom: 30px;
+}
+
+@keyframes glowFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.4), 0 0 20px rgba(255, 193, 7, 0.2);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(255, 193, 7, 0.6), 0 0 30px rgba(255, 193, 7, 0.4);
+  }
 }
 
 .balloon {
-    background-color: #ffcc80; /* Light orange */
-    border: 2px solid #ffa726; /* Darker orange */
-    border-radius: 50%; /* Make it round */
-    width: 130px; /* 增加寬度 */
-    height: 130px; /* 增加高度 */
+    background: radial-gradient(circle, rgba(255,193,7,0.8) 0%, rgba(255,152,0,0.6) 60%, transparent 100%);
+    border: none; /* Remove border, use shadow for effect */
+    border-radius: 50%;
+    width: 120px; /* Slightly smaller to look more like nodes */
+    height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    animation: float 3s ease-in-out infinite;
+    animation: glowFloat 4s ease-in-out infinite;
+    cursor: default; /* Indicate non-interactive */
 }
 
 .balloon-number {
-    font-size: 30px; /* 增加數字大小 */
+    font-size: 28px;
     font-weight: bold;
-    color: #bf360c; /* Dark red-orange */
+    color: #fff;
+    text-shadow: 0 0 3px black;
 }
 
 .balloon-supplier {
-    font-size: 14px; /* 增加供應商文字大小 */
-    color: #5d4037; /* Brown */
+    font-size: 13px;
+    color: #0a192f; /* Dark text for contrast on gold */
     margin-top: 5px;
+    font-weight: 500;
 }
 
 .balloon.hit {
-    background-color: #bdbdbd; /* Grey */
-    border-color: #757575;
-    opacity: 0.6;
+    background: radial-gradient(circle, #555 0%, #333 60%, transparent 100%);
+    opacity: 0.5;
     transform: scale(0.9);
     animation: none;
+    box-shadow: none;
 }
 
-#start-button {
-    display: block;
-    margin: 20px auto;
+#start-button,
+#reset-button {
+    display: inline-block; /* Allow side-by-side */
+    margin: 20px 10px;
+}
+
+/* Center the buttons container */
+body > div:has(> #start-button) { 
+    text-align: center;
 }
 
 #results-area {
     margin-top: 30px;
-    padding: 15px;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #112240; /* Darker background for results */
+    border: 1px solid #1d3b6b;
     border-radius: 5px;
     max-height: 400px;
-    overflow-y: auto; /* Add scroll if results are too many */
+    overflow-y: auto;
+}
+
+#results-area h2 {
+    color: #ccd6f6; /* Match body text color */
+    text-shadow: none;
+    margin-bottom: 15px;
 }
 
 .hit-result {
-    padding: 10px 0; /* 增加一點垂直間距 */
-    border-bottom: 1px dashed #eee;
-    font-size: 16px; /* 增加祝福結果字體大小 */
+    padding: 12px 0;
+    border-bottom: 1px dashed #1d3b6b;
+    font-size: 16px;
+    color: #8892b0; /* Lighter grey for results */
+}
+
+.hit-result strong {
+    color: #64ffda; /* Highlight names with title color */
+    font-weight: bold;
 }
 
 .hit-result:last-child {
@@ -122,9 +177,10 @@ label {
 
 /* Style for the small dart icon in results */
 .result-dart-icon {
-    height: 1em; /* Make icon height relative to text size */
-    vertical-align: middle; /* Align icon nicely with text */
-    margin-right: 5px;
+    height: 1.1em;
+    vertical-align: middle;
+    margin-right: 8px;
+    filter: invert(80%) sepia(90%) saturate(500%) hue-rotate(350deg) brightness(100%) contrast(100%); /* Attempt to color dart icon gold/orange */
 }
 
 /* Mobile Styles (mobile.html) */
@@ -134,51 +190,66 @@ label {
 #result-message {
     max-width: 400px;
     margin: 30px auto;
-    padding: 20px;
-    background-color: #fff;
+    padding: 30px;
+    background-color: #112240; /* Dark background for forms */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #1d3b6b;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     text-align: center;
+}
+
+#initial-form h1 {
+    font-size: 22px; /* Adjust title size for mobile */
+}
+
+#dart-screen #dart-container #dart-input-overlay input {
+    background-color: rgba(10, 25, 47, 0.8); /* Darker semi-transparent for input */
+    border: 1px solid #64ffda;
+    color: #fff;
 }
 
 #submit-button,
 #shoot-button {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
+}
+
+#waiting-screen h1 {
+     font-size: 24px;
+     margin-bottom: 10px;
 }
 
 #waiting-screen p {
-    font-size: 18px;
-    color: #777;
+    font-size: 16px;
+    color: #8892b0;
 }
 
 #result-message {
-    font-weight: bold;
+    font-weight: normal; /* Make result text normal weight */
     padding: 15px;
     border-radius: 5px;
+    line-height: 1.6;
+    font-size: 15px;
 }
 
 #result-message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: rgba(100, 255, 218, 0.1); /* Light teal background */
+    color: #64ffda; /* Teal text */
+    border: 1px solid #64ffda;
 }
 
 #result-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: rgba(255, 100, 100, 0.1); /* Light red background */
+    color: #ff6464; /* Red text */
+    border: 1px solid #ff6464;
 }
 
-/* Add animation keyframes */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+/* Adjust dart instruction text color */
+#dart-screen p {
+    color: #8892b0; /* Match label color */
+}
+
+/* Add some spacing below the result area */
+#results-area {
+    margin-bottom: 50px; 
 }
