@@ -14,13 +14,16 @@
 
     <button id="start-button">開始給祝福</button>
     <button id="reset-button" style="margin-left: 10px; background-color: #f44336;">重設遊戲</button>
+    <button id="generate-table-button" style="margin-left: 10px;">產生結果表格</button>
 
     <div id="results-area">
         <h2>祝福結果</h2>
         <!-- 射中的結果會顯示在這裡 -->
     </div>
 
-    <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO 客戶端庫 -->
+    <div id="results-table-container" style="margin-top: 30px;"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

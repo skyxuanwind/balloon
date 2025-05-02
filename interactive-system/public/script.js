@@ -11,6 +11,8 @@ const balloonArea = document.getElementById('balloon-area');
 const startButton = document.getElementById('start-button');
 const resetButton = document.getElementById('reset-button');
 const resultsArea = document.getElementById('results-area');
+const generateTableButton = document.getElementById('generate-table-button');
+const resultsTableContainer = document.getElementById('results-table-container');
 
 // --- 監聽新氣球事件 ---
 socket.on('newBalloons', (newBalloons) => {
@@ -81,6 +83,66 @@ socket.on('balloonHit', (data) => {
   }
 });
 
+// --- "產生結果表格" 按鈕 ---
+generateTableButton.addEventListener('click', () => {
+    console.log('Generate table button clicked');
+    // 向伺服器請求完整的結果數據
+    socket.emit('getResultsData'); 
+    // 可以加個提示，例如按鈕文字變 '載入中...'
+    generateTableButton.textContent = '正在產生表格...';
+    generateTableButton.disabled = true;
+});
+
+// --- 監聽來自伺服器的完整結果數據 ---
+socket.on('resultsData', (allBalloons) => {
+    console.log('Received results data:', allBalloons);
+    resultsTableContainer.innerHTML = ''; // 清空舊表格
+
+    if (Object.keys(allBalloons).length === 0) {
+        resultsTableContainer.innerHTML = '<p>目前沒有任何結果可生成表格。</p>';
+        generateTableButton.textContent = '產生結果表格';
+        generateTableButton.disabled = false;
+        return;
+    }
+
+    // 創建表格
+    const table = document.createElement('table');
+    table.classList.add('results-table'); // 添加 class 以便 CSS 定位
+
+    // 創建表頭
+    const thead = table.createTHead();
+    const headerRow = thead.insertRow();
+    const headers = ['供應商 (需求)', '由誰提出', '由誰祝福'];
+    headers.forEach(text => {
+        const th = document.createElement('th');
+        th.textContent = text;
+        headerRow.appendChild(th);
+    });
+
+    // 創建表身
+    const tbody = table.createTBody();
+    for (const balloonId in allBalloons) {
+        const balloonData = allBalloons[balloonId];
+        const row = tbody.insertRow();
+        
+        const cellSupplier = row.insertCell();
+        cellSupplier.textContent = balloonData.supplier || '-';
+
+        const cellSubmitter = row.insertCell();
+        cellSubmitter.textContent = balloonData.submittedBy || '-';
+
+        const cellHitter = row.insertCell();
+        cellHitter.textContent = balloonData.hitBy || '尚未祝福'; // 如果 hitBy 是 null，顯示提示
+    }
+
+    // 將表格放入容器
+    resultsTableContainer.appendChild(table);
+
+    // 恢復按鈕狀態
+    generateTableButton.textContent = '產生結果表格';
+    generateTableButton.disabled = false;
+});
+
 // --- 監聽遊戲重設事件 ---
 socket.on('gameReset', () => {
   console.log('Received gameReset signal from server.');
@@ -96,4 +158,7 @@ socket.on('gameReset', () => {
   startButton.textContent = '開始給祝福';
   
   alert('遊戲已重設！'); // 給用戶提示
+  resultsTableContainer.innerHTML = ''; // 同步清空表格容器
+  generateTableButton.textContent = '產生結果表格'; // 重設按鈕文字
+  generateTableButton.disabled = false; // 確保按鈕可用
 });

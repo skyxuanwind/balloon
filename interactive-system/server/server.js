@@ -195,6 +195,18 @@ io.on('connection', (socket) => {
     }
   });
 
+  // --- 回應大螢幕請求完整結果數據 ---
+  socket.on('getResultsData', () => {
+    // 考慮只讓 screen 類型的客戶端請求 (如果需要)
+    // if (clientTypes[socket.id] === 'screen') { 
+        console.log(`Received getResultsData from ${socket.id}. Sending current balloons state.`);
+        // 直接發送儲存的 balloons 物件
+        socket.emit('resultsData', balloons);
+    // } else {
+    //    console.warn(`getResultsData attempt from non-screen client ${socket.id}.`);
+    // }
+  });
+
 });
 
 server.listen(PORT, () => {

@@ -254,3 +254,38 @@ body > div:has(> #start-button) {
 #results-area {
     margin-bottom: 50px; 
 }
+
+/* Add table styles */
+.results-table {
+    width: 100%;
+    border-collapse: collapse; /* Merge borders */
+    margin-top: 20px;
+    color: #ccd6f6; /* Light text */
+    background-color: #112240; /* Dark background */
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #1d3b6b; /* Dark blue border */
+    padding: 10px 12px;
+    text-align: left;
+}
+
+.results-table th {
+    background-color: #0a192f; /* Even darker for header */
+    color: #64ffda; /* Teal header text */
+    font-weight: bold;
+}
+
+.results-table tbody tr:nth-child(odd) {
+    background-color: #132f51; /* Slightly lighter blue for odd rows */
+}
+
+.results-table tbody tr:hover {
+    background-color: #1d3b6b; /* Darker blue on hover */
+}
+
+/* Adjust spacing below the result area */
+#results-area {
+    margin-bottom: 50px; 
+}
